@@ -1,0 +1,39 @@
+{
+  "name": "housekeeping",
+  "version": "1.0.0",
+  "description": ":house:",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaroslavgribov/housekeeping.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaroslavgribov/housekeeping/issues"
+  },
+  "homepage": "https://github.com/yaroslavgribov/housekeeping#readme",
+  "dependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.8",
+    "eslint-plugin-react": "^7.5.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "postcss-loader": "^2.0.10",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "style-loader": "^0.19.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.0"
+  }
+}
