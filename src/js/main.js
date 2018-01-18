@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Application from './Application'
+import Application from './components/Application'
 import '../styl/main.styl'
 
 ReactDOM.render(

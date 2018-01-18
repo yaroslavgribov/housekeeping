@@ -17,10 +17,7 @@ module.exports = {
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
-        exclude: /(node_modules)/,
-        query: {
-          presets: ['env', 'react']
-        }
+        exclude: /(node_modules)/
       },
       {
         test: /\.css$/,
@@ -71,9 +68,11 @@ module.exports = {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.IgnorePlugin(/\.(jpe|jpg|woff|woff2|eot|ttf|svg|png)(\?.*$|$)/)
+    new webpack.IgnorePlugin(/\.(jpe|jpg|woff|woff2|eot|ttf|svg|png)(\?.*$|$)/),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    publicPath: path.join(__dirname, 'dist')
+    contentBase: path.join(__dirname, 'dist'),
+    hot: true
   }
 };
