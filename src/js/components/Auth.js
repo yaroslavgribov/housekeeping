@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 
-import connection from '../connection';
+import connection, { auth } from '../connection';
+
 
 class Auth extends Component {
   state = {
@@ -12,12 +13,10 @@ class Auth extends Component {
     event.preventDefault();
     const { email, password } = event.target.elements;
     console.log({ email: email.value, pass: password.value });
-    connection
-      .auth()
+    auth
       .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       .then(() => {
-        connection
-          .auth()
+          auth
           .signInWithEmailAndPassword(email.value, password.value)
           .then(response => {
             console.log(connection.auth().currentUser);
@@ -33,26 +32,26 @@ class Auth extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form className="form login-form" onSubmit={this.handleSubmit}>
           <h2>Привет! Для начала - введи почту и пароль!</h2>
           <label>
             E-mail:
-            <input type="email" name="email" />
+            <input type="email" name="email" className="form-control"/>
           </label>
           <label>
             Password:
-            <input type="password" name="password" />
+            <input type="password" name="password" className="form-control" />
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit" className="button">LOGIN</button>
+          {
+            this.state.error && (
+              <div className="form-errors">
+                status: {this.state.error.code}
+                message: {this.state.error.message}
+              </div>
+            )
+          }
         </form>
-        {
-          this.state.error && (
-            <div>
-              status: {this.state.error.code}
-              message: {this.state.error.message}
-            </div>
-          )
-        }
       </div>
     );
   }

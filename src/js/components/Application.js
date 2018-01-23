@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import firebase from 'firebase';
 import Rates from './Rates';
 import Auth from './Auth';
 import Readings from './Readings';
-import connection from '../connection';
+import connection, { auth } from '../connection';
+import Dashboard from './Dashboard';
 
 class Application extends Component {
-  componentDidMount() {
-    firebase
-      
+  state = {
+    user: null
+  }
 
-    connection
-      .database()
-      .ref('/rates')
-      .once('value')
-      .then(snapshot => {
-        console.log(snapshot.val(), typeof snapshot.val());
-      });
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) { 
+        this.setState({ user })
+      }
+    })
   }
 
   render() {
     return (
-      <div>
-        <h1>Hello Everyone!</h1>
-        <Auth />
-        <Rates />
-        <Readings />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact render={() => this.state.user ? <Redirect to="/dashboard" /> : <Auth /> } />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/readings" component={Readings} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
