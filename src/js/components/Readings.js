@@ -41,7 +41,7 @@ class Readings extends Component {
     }
     const today = date(new Date());
 
-    db.ref('readings/' + '22-02-2018').set({ readings })
+    db.ref('readings/' + today).set({ readings })
       .then(
         _ => {
           return db.ref('rates').once('value')
@@ -57,7 +57,7 @@ class Readings extends Component {
           );
         }, 0)
 
-        db.ref('payments/' + '22-02-2018').set({ payment })
+        db.ref('payments/' + today).set({ payment })
       });
   };
 
