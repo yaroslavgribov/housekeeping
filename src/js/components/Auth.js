@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import firebase from 'firebase';
+import React, { Component } from 'react'
+import firebase from 'firebase'
 
-import connection, { auth } from '../connection';
-
+import { auth } from '../connection'
 
 class Auth extends Component {
   state = {
@@ -10,8 +9,8 @@ class Auth extends Component {
   };
 
   handleSubmit = event => {
-    event.preventDefault();
-    const { email, password } = event.target.elements;
+    event.preventDefault()
+    const { email, password } = event.target.elements
 
     auth
       .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -19,14 +18,14 @@ class Auth extends Component {
           auth
           .signInWithEmailAndPassword(email.value, password.value)
           .then(response => {
-            console.log(auth.currentUser);
+            console.log(auth.currentUser)
           })
           .catch(error => {
             this.setState({
               error: error
-            });
-          });
-      });
+            })
+          })
+      })
   };
 
   render() {
@@ -55,8 +54,8 @@ class Auth extends Component {
           )
         }
       </form>
-    );
+    )
   }
 }
 
-export default Auth;
+export default Auth

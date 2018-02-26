@@ -27,6 +27,7 @@
         "constructor-super": "warn",
         "valid-typeof": "warn",
         "no-console": 0,
-        "quotes": ["error", "single"]
+        "quotes": ["error", "single"],
+        "semi": [2, "always"]
     }
 }

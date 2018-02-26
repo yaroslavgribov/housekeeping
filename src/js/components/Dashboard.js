@@ -1,36 +1,38 @@
-import React, {Component} from 'react';
-import connection from '../connection';
-import ReadonlyRates from './ReadonlyRates';
-import Readings from './Readings';
+import React, {Component} from 'react'
+import connection, { db } from '../connection'
+import ReadonlyRates from './ReadonlyRates'
+import Readings from './Readings'
+import Payments from './Payments'
 
 class Dashboard extends Component {
   state = {
-    rates: {
-      water: null,
-      electricity: null
-    }
+    rates: {},
+    readings: {}
   }
 
   componentDidMount() {
-    connection
-      .database()
+    db
       .ref('/rates')
       .once('value')
       .then(snapshot => {
-        this.setState({ rates: snapshot.val() });
-      });
+        console.log(snapshot.val())
+        this.setState({ rates: snapshot.val() })
+      })
   }
 
   render() {
-    const { rates: { water, electricity } } = this.state;
+    const { 
+      rates
+    } = this.state
 
     return (
       <div>
-      { water && electricity && <ReadonlyRates water={water} electricity={electricity} /> }
+      { Object.keys(rates).length > 0 && <ReadonlyRates {...rates} /> }
       <Readings />
+      { Object.keys(rates).length > 0 && <Payments rates={rates}/> }
       </div>
     )
   }
 }
 
-export default Dashboard;
+export default Dashboard

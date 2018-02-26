@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Clock from './Clock'
+
 class Header extends Component {
   signOut = () => {
     this.props.signOut()
@@ -10,9 +12,13 @@ class Header extends Component {
     const { user } = this.props
 
     return (
-      <header>
-        Hi! {user && user.email}
-        <button onClick={this.signOut}>Sign Out</button>
+      <header className="header">
+        <div>
+          Hi! {user && user.email}
+          <button onClick={this.signOut}>Sign Out</button>
+        </div>
+        
+        <Clock />
       </header>
     )
   }
